@@ -1,15 +1,34 @@
 <template lang="pug">
   .header
-    img.header-logo(src="@/assets/images/logo.png")
+    NuxtLink.header-link(:to="{name: 'index'}")
+      img.header-logo(src="@/assets/images/logo.png")
     .header-icon
-      font-awesome-icon.header-search(icon="search" size="lg" color="#595959")
-      font-awesome-icon.header-user(icon="user" size="lg" color="#595959")
+      font-awesome-icon.header-search(icon="search" size="lg" color="#595959" @click="searchDialog = true")
+      font-awesome-icon.header-user(icon="user" size="lg" color="#595959" @click="userInfoDialog = true")
+    Search(v-if="searchDialog")
+    UserInfo(v-if="userInfoDialog")
 </template>
+<script>
+import Search from '@/components/Search.vue'
+import UserInfo from '@/components/UserInfo.vue'
+export default {
+  components: {
+    Search,
+    UserInfo
+  },
+  data () {
+    return {
+      searchDialog: false,
+      userInfoDialog: false
+    }
+  }
+}
+</script>
 <style lang="scss">
 .header {
   background-color: #fff;
   box-shadow: 0px 5px 7px #7A7B7D;
-  height: 8vh;
+  height: 60px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -28,6 +47,10 @@
   }
   &-user {
     cursor: pointer;
+  }
+  &-link {
+    text-decoration: none;
+    color: inherit;
   }
 }
 </style>

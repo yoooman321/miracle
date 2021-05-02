@@ -12,7 +12,10 @@
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "axios": "^0.21.1",
+    "axios-mock-adapter": "^1.19.0",
     "core-js": "^3.9.1",
+    "mockjs": "^1.1.0",
     "nuxt": "^2.15.3",
     "nuxt-fontawesome": "^0.4.0"
   },

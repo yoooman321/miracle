@@ -1,5 +1,5 @@
 <template lang="pug">
-  .index
+  .result
     videoList.videoList(:videoInformation="videoInformation")
     Observer(@getVideoList="getVideoList")
 </template>
@@ -16,13 +16,14 @@ export default {
   data () {
     return {
       videoInformation: [],
-      page: 0
+      page: 0,
+      searchText: this.$route.params.searchText
     }
   },
   methods: {
     getVideoList () {
       this.page++
-      axios.get('/getVideoList', { params: { page: 'home', videoListPage: this.page } }).then((response) => {
+      axios.get('/searchVideo', { params: { searchText: this.searchText, videoListPage: this.page } }).then((response) => {
         this.videoInformation = [...this.videoInformation, ...response.data.videoList]
       })
     }
@@ -31,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
-.index {
-  padding: 40px 0;
+.result {
+  padding: 5vh 0;
 }
 </style>
